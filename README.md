@@ -27,6 +27,15 @@
   <img src="https://img.shields.io/github/license/likhonsheikhdev/docker-model-runner?style=flat-square" alt="License">
   <img src="https://img.shields.io/github/stars/likhonsheikhdev/docker-model-runner?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/badge/python-3.11+-blue?style=flat-square" alt="Python">
+  <a href="https://t.me/likhonsheikh"><img src="https://img.shields.io/badge/Telegram-@likhonsheikh-2CA5E0?style=flat-square&logo=telegram" alt="Telegram"></a>
+</p>
+
+<p align="center">
+  <strong>Author:</strong> <a href="https://github.com/likhonsheikhdev">Likhon Sheikh</a>
+  &nbsp;|&nbsp;
+  <a href="https://t.me/likhonsheikh">
+    <img src="https://img.shields.io/badge/Contact-Telegram-blue?logo=telegram" alt="Telegram" height="20">
+  </a>
 </p>
 
 ---
@@ -424,5 +433,26 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 </p>
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/likhonsheikhdev">Likhon Sheikh</a>
+  Made with ❤️ by <a href="https://github.com/likhonsheikhdev"><strong>Likhon Sheikh</strong></a>
 </p>
+
+<p align="center">
+  <a href="https://github.com/likhonsheikhdev">
+    <img src="https://img.shields.io/badge/GitHub-likhonsheikhdev-181717?style=for-the-badge&logo=github" alt="GitHub">
+  </a>
+  <a href="https://t.me/likhonsheikh">
+    <img src="https://img.shields.io/badge/Telegram-@likhonsheikh-2CA5E0?style=for-the-badge&logo=telegram" alt="Telegram">
+  </a>
+</p>
+
+---
+
+## Contact & Support
+
+| Channel | Link |
+|---------|------|
+| GitHub | [@likhonsheikhdev](https://github.com/likhonsheikhdev) |
+| Telegram | [@likhonsheikh](https://t.me/likhonsheikh) |
+| HuggingFace | [likhonsheikhdev](https://huggingface.co/likhonsheikhdev) |
+
+For bug reports and feature requests, please open a [GitHub Issue](https://github.com/mariarudushibd/docker-model-runner/issues).
