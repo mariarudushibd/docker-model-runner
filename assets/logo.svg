@@ -1,0 +1,18 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rainbow" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff0080"/>
+      <stop offset="20%" stop-color="#ff4d00"/>
+      <stop offset="40%" stop-color="#ffcc00"/>
+      <stop offset="60%" stop-color="#00ff88"/>
+      <stop offset="80%" stop-color="#00ccff"/>
+      <stop offset="100%" stop-color="#6644ff"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer triangle -->
+  <path d="M100 20 L180 160 L20 160 Z" stroke="url(#rainbow)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Inner A shape -->
+  <path d="M100 70 L130 130 L70 130 Z" stroke="url(#rainbow)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Horizontal bar -->
+  <line x1="80" y1="115" x2="120" y2="115" stroke="url(#rainbow)" stroke-width="6" stroke-linecap="round"/>
+</svg>
