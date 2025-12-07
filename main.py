@@ -4,8 +4,9 @@ Full compatibility with Anthropic Messages API + Interleaved Thinking
 Supports: /v1/messages, /anthropic/v1/messages, /api/v1/messages
 Optimized for: 2 vCPU, 16GB RAM
 """
-from fastapi import FastAPI, HTTPException, Header, Request
-from fastapi.responses import StreamingResponse, HTMLResponse, FileResponse
+from fastapi import FastAPI, HTTPException, Header, Request, status
+from fastapi.responses import StreamingResponse, HTMLResponse, FileResponse, JSONResponse
+from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
@@ -66,6 +67,63 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ============== Anthropic Error Handling ==============
+
+class AnthropicError(BaseModel):
+    type: str
+    message: str
+
+
+class AnthropicErrorResponse(BaseModel):
+    type: str = "error"
+    error: AnthropicError
+
+
+def create_error_response(status_code: int, error_type: str, message: str) -> JSONResponse:
+    """Create Anthropic-compatible error response."""
+    return JSONResponse(
+        status_code=status_code,
+        content={
+            "type": "error",
+            "error": {
+                "type": error_type,
+                "message": message
+            }
+        }
+    )
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    """Handle validation errors (400 - invalid_request_error)."""
+    errors = exc.errors()
+    message = "; ".join([f"{e['loc'][-1]}: {e['msg']}" for e in errors])
+    return create_error_response(400, "invalid_request_error", message)
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    """Handle HTTP exceptions with Anthropic error format."""
+    error_mapping = {
+        400: "invalid_request_error",
+        401: "authentication_error",
+        403: "permission_error",
+        404: "not_found_error",
+        413: "request_too_large",
+        429: "rate_limit_error",
+        500: "api_error",
+        529: "overloaded_error"
+    }
+    error_type = error_mapping.get(exc.status_code, "api_error")
+    return create_error_response(exc.status_code, error_type, str(exc.detail))
+
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception):
+    """Handle unexpected errors (500 - api_error)."""
+    return create_error_response(500, "api_error", f"An unexpected error occurred: {str(exc)}")
 
 
 # ============== Anthropic API Models ==============
